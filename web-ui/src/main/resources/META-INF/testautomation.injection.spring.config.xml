@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="executionProvider" class="ru.itb.web.execution.impl.ExecutionServiceProviderImpl"/>
+    <bean id="objectManager" class="ru.itb.configuration.factory.ObjectManagerFactory"/>
+    <bean id="actionObjectManager" class = "ru.itb.selenium.factory.SeleniumObjectManagerFactory"/>
+
+    <!--<global-method-security pre-post-annotations="enabled" />  (1)-->
+
+    <!--<http pattern="/api/login" security="none"/>   (2)-->
+    <!--<http pattern="/api/signup" security="none"/>-->
+
+    <!--<http pattern="/api/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless"> (3)-->
+        <!--<csrf disabled="true"/>  (4)-->
+        <!--<custom-filter before="FORM_LOGIN_FILTER" ref="jwtAuthenticationFilter"/>  (5)-->
+    <!--</http>-->
+
+    <!--<bean id="jwtAuthenticationFilter" class="com.toptal.travelplanner.security.JwtAuthenticationFilter">  (6)-->
+        <!--<property name="authenticationManager" ref="authenticationManager" />-->
+        <!--<property name="authenticationSuccessHandler" ref="jwtAuthenticationSuccessHandler" />  (7)-->
+    <!--</bean>-->
+
+    <!--<authentication-manager alias="authenticationManager">-->
+        <!--<authentication-provider ref="jwtAuthenticationProvider" />  (8)-->
+    <!--</authentication-manager>-->
+
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="5" />
+        <property name="maxPoolSize" value="10" />
+        <property name="queueCapacity" value="25" />
+    </bean>
+
+</beans>
+
